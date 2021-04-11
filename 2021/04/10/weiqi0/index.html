@@ -1,0 +1,1565 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="深度学习与围棋读书笔记1, 郭毅的博客">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>深度学习与围棋读书笔记1 | 郭毅的博客</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="郭毅的博客" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">郭毅的博客</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>Index</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>Tags</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>Categories</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>Archives</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>About</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>Contact</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>Friends</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="Search" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">郭毅的博客</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			Index
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			Tags
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			Categories
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			Archives
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			About
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			Contact
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			Friends
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">深度学习与围棋读书笔记1</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%8E%E5%9B%B4%E6%A3%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">
+                                <span class="chip bg-color">深度学习与围棋读书笔记</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2021-04-10
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="构建一个围棋机器人"><a href="#构建一个围棋机器人" class="headerlink" title="构建一个围棋机器人"></a>构建一个围棋机器人</h1><h2 id="1-表示棋手"><a href="#1-表示棋手" class="headerlink" title="1.表示棋手"></a>1.表示棋手</h2><h3 id="首先继承enum表示棋手类，并且里面还有一个方法，即调用这个方法可以返回另一个棋手的类"><a href="#首先继承enum表示棋手类，并且里面还有一个方法，即调用这个方法可以返回另一个棋手的类" class="headerlink" title="首先继承enum表示棋手类，并且里面还有一个方法，即调用这个方法可以返回另一个棋手的类"></a>首先继承enum表示棋手类，并且里面还有一个方法，即调用这个方法可以返回另一个棋手的类</h3><pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> enum
+<span class="token keyword">class</span> <span class="token class-name">Player</span><span class="token punctuation">(</span>enum<span class="token punctuation">.</span>Enum<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    black <span class="token operator">=</span> <span class="token number">1</span>
+    white <span class="token operator">=</span> <span class="token number">2</span>
+
+    @property
+    <span class="token keyword">def</span> <span class="token function">other</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> Player<span class="token punctuation">.</span>black <span class="token keyword">if</span> self <span class="token operator">==</span> Player<span class="token punctuation">.</span>white <span class="token keyword">else</span> Player<span class="token punctuation">.</span>white
+</code></pre>
+<h3 id="这里为什么可以通过self和一个看似为属性的东西进行比较相等呢？"><a href="#这里为什么可以通过self和一个看似为属性的东西进行比较相等呢？" class="headerlink" title="这里为什么可以通过self和一个看似为属性的东西进行比较相等呢？"></a>这里为什么可以通过self和一个看似为属性的东西进行比较相等呢？</h3><h3 id="其实这里的Player-black并不是一个属性，而是一个类，而self可以代表枚举产生的类，因此，可以通过判断返回另一个棋手的类"><a href="#其实这里的Player-black并不是一个属性，而是一个类，而self可以代表枚举产生的类，因此，可以通过判断返回另一个棋手的类" class="headerlink" title="其实这里的Player.black并不是一个属性，而是一个类，而self可以代表枚举产生的类，因此，可以通过判断返回另一个棋手的类"></a>其实这里的<code>Player.black</code>并不是一个属性，而是一个类，而self可以代表枚举产生的类，因此，可以通过判断返回另一个棋手的类</h3><h2 id="2-表示棋的位置"><a href="#2-表示棋的位置" class="headerlink" title="2.表示棋的位置"></a>2.表示棋的位置</h2><h3 id="这里的point传入一个namedtuple-nametuple就是把一个数组的索引变成了有名字的样子，这里传入了一个空的数组，名字为Point，行列分别为row-col。这里还传入了一个neighbor方法，用来表示周围的格子，为了便于以后计算气数做准备。"><a href="#这里的point传入一个namedtuple-nametuple就是把一个数组的索引变成了有名字的样子，这里传入了一个空的数组，名字为Point，行列分别为row-col。这里还传入了一个neighbor方法，用来表示周围的格子，为了便于以后计算气数做准备。" class="headerlink" title="这里的point传入一个namedtuple,nametuple就是把一个数组的索引变成了有名字的样子，这里传入了一个空的数组，名字为Point，行列分别为row col。这里还传入了一个neighbor方法，用来表示周围的格子，为了便于以后计算气数做准备。"></a>这里的point传入一个<code>namedtuple</code>,nametuple就是把一个数组的索引变成了有名字的样子，这里传入了一个空的数组，名字为<code>Point</code>，行列分别为<code>row col</code>。这里还传入了一个<code>neighbor</code>方法，用来表示周围的格子，为了便于以后计算气数做准备。</h3><pre class=" language-python"><code class="language-python"><span class="token keyword">from</span> collections <span class="token keyword">import</span> namedtuple
+<span class="token keyword">class</span> <span class="token class-name">Point</span><span class="token punctuation">(</span>namedtuple<span class="token punctuation">(</span><span class="token string">'Point'</span><span class="token punctuation">,</span> <span class="token string">'row col'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">neighbors</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token punctuation">[</span>
+            Point<span class="token punctuation">(</span>self<span class="token punctuation">.</span>row <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>col<span class="token punctuation">)</span><span class="token punctuation">,</span>
+            Point<span class="token punctuation">(</span>self<span class="token punctuation">.</span>row <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>col<span class="token punctuation">)</span><span class="token punctuation">,</span>
+            Point<span class="token punctuation">(</span>self<span class="token punctuation">.</span>row<span class="token punctuation">,</span> self<span class="token punctuation">.</span>col <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            Point<span class="token punctuation">(</span>self<span class="token punctuation">.</span>row<span class="token punctuation">,</span> self<span class="token punctuation">.</span>col <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token punctuation">]</span>
+</code></pre>
+<h3 id="上面都是gotypes-py里面的内容，用来定义一个棋"><a href="#上面都是gotypes-py里面的内容，用来定义一个棋" class="headerlink" title="上面都是gotypes.py里面的内容，用来定义一个棋"></a>上面都是<code>gotypes.py</code>里面的内容，用来定义一个棋</h3><hr>
+<h3 id="定义了一个棋的基本属性后，我们再来定义行棋中的一些动作，我们用一个Move类来囊括这些动作"><a href="#定义了一个棋的基本属性后，我们再来定义行棋中的一些动作，我们用一个Move类来囊括这些动作" class="headerlink" title="定义了一个棋的基本属性后，我们再来定义行棋中的一些动作，我们用一个Move类来囊括这些动作"></a>定义了一个棋的基本属性后，我们再来定义行棋中的一些动作，我们用一个<code>Move</code>类来囊括这些动作</h3><pre class=" language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Move</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment" spellcheck="true"># &lt;1></span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> point<span class="token operator">=</span>None<span class="token punctuation">,</span> is_pass<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span> is_resign<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">assert</span> <span class="token punctuation">(</span>point <span class="token keyword">is</span> <span class="token operator">not</span> None<span class="token punctuation">)</span> <span class="token operator">^</span> is_pass <span class="token operator">^</span> is_resign
+        self<span class="token punctuation">.</span>point <span class="token operator">=</span> point
+        self<span class="token punctuation">.</span>is_play <span class="token operator">=</span> <span class="token punctuation">(</span>self<span class="token punctuation">.</span>point <span class="token keyword">is</span> <span class="token operator">not</span> None<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>is_pass <span class="token operator">=</span> is_pass
+        self<span class="token punctuation">.</span>is_resign <span class="token operator">=</span> is_resign
+
+    @classmethod
+    <span class="token keyword">def</span> <span class="token function">play</span><span class="token punctuation">(</span>cls<span class="token punctuation">,</span> point<span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment" spellcheck="true"># &lt;2></span>
+        <span class="token keyword">return</span> Move<span class="token punctuation">(</span>point<span class="token operator">=</span>point<span class="token punctuation">)</span>
+
+    @classmethod
+    <span class="token keyword">def</span> <span class="token function">pass_turn</span><span class="token punctuation">(</span>cls<span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment" spellcheck="true"># &lt;3></span>
+        <span class="token keyword">return</span> Move<span class="token punctuation">(</span>is_pass<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+
+    @classmethod
+    <span class="token keyword">def</span> <span class="token function">resign</span><span class="token punctuation">(</span>cls<span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment" spellcheck="true"># &lt;4></span>
+        <span class="token keyword">return</span> Move<span class="token punctuation">(</span>is_resign<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+</code></pre>
+<pre class=" language-python"><code class="language-python">语法知识点补充：
+    <span class="token number">1</span><span class="token punctuation">.</span><span class="token keyword">assert</span>（断言）：
+    它是一个写python程序时候的好的习惯，在程序不满足条件是及时报错
+    <span class="token keyword">assert</span>相当于 <span class="token keyword">raise</span><span class="token operator">-</span><span class="token keyword">if</span><span class="token operator">-</span><span class="token operator">not</span><span class="token punctuation">,</span><span class="token keyword">assert</span> 发出的信息为后面跟着的字符串可以通过一个数组来传递，上面的表明如果没有传入一个落子点，就打印出是否投降或者是停一手，因此我们检查程序是否出错。
+    <span class="token number">2.</span>classmethod<span class="token punctuation">:</span>
+    类中的classmethod表示不用实例化类，直接用类<span class="token punctuation">.</span>名字就可以调用的意思。
+</code></pre>
+<h4 id="参考知识链接：-1-断言-2-classmethod"><a href="#参考知识链接：-1-断言-2-classmethod" class="headerlink" title="参考知识链接： 1.断言 2.classmethod"></a>参考知识链接： 1.<a target="_blank" rel="noopener" href="https://www.cnblogs.com/liuchunxiao83/p/5298016.html">断言</a> 2.<a target="_blank" rel="noopener" href="https://www.runoob.com/python/python-func-classmethod.html">classmethod</a></h4><h3 id="上面将类中的属性和传入的属性进行绑定，并且直接通过Move-args-method来进行一步的操作。"><a href="#上面将类中的属性和传入的属性进行绑定，并且直接通过Move-args-method来进行一步的操作。" class="headerlink" title="上面将类中的属性和传入的属性进行绑定，并且直接通过Move(**args).method来进行一步的操作。"></a>上面将类中的属性和传入的属性进行绑定，并且直接通过<code>Move(**args).method</code>来进行一步的操作。</h3><h2 id="这么做方便了数据类型和游戏逻辑的分离，下面我们开始定义围棋的游戏逻辑"><a href="#这么做方便了数据类型和游戏逻辑的分离，下面我们开始定义围棋的游戏逻辑" class="headerlink" title="这么做方便了数据类型和游戏逻辑的分离，下面我们开始定义围棋的游戏逻辑"></a>这么做方便了数据类型和游戏逻辑的分离，下面我们开始定义围棋的游戏逻辑</h2><hr>
+<h1 id="1-实现围棋棋盘"><a href="#1-实现围棋棋盘" class="headerlink" title="1.实现围棋棋盘"></a>1.实现围棋棋盘</h1><h2 id="1-跟踪相连的棋组（GoString-）"><a href="#1-跟踪相连的棋组（GoString-）" class="headerlink" title="(1)跟踪相连的棋组（GoString()）"></a>(1)跟踪相连的棋组（<code>GoString()</code>）</h2><h3 id="为了不独立检查棋子，节约算力，我们将相连的同色棋子看为一个整体"><a href="#为了不独立检查棋子，节约算力，我们将相连的同色棋子看为一个整体" class="headerlink" title="为了不独立检查棋子，节约算力，我们将相连的同色棋子看为一个整体"></a>为了不独立检查棋子，节约算力，我们将相连的同色棋子看为一个整体</h3><pre class=" language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">GoString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment" spellcheck="true"># &lt;1></span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> color<span class="token punctuation">,</span> stones<span class="token punctuation">,</span> liberties<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>color <span class="token operator">=</span> color
+        self<span class="token punctuation">.</span>stones <span class="token operator">=</span> set<span class="token punctuation">(</span>stones<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>liberties <span class="token operator">=</span> set<span class="token punctuation">(</span>liberties<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">remove_liberty</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> point<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>liberties<span class="token punctuation">.</span>remove<span class="token punctuation">(</span>point<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">add_liberty</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> point<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>liberties<span class="token punctuation">.</span>add<span class="token punctuation">(</span>point<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">merged_with</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> go_string<span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment" spellcheck="true"># &lt;2></span>
+        <span class="token keyword">assert</span> go_string<span class="token punctuation">.</span>color <span class="token operator">==</span> self<span class="token punctuation">.</span>color
+        combined_stones <span class="token operator">=</span> self<span class="token punctuation">.</span>stones <span class="token operator">|</span> go_string<span class="token punctuation">.</span>stones
+        <span class="token keyword">return</span> GoString<span class="token punctuation">(</span>
+            self<span class="token punctuation">.</span>color<span class="token punctuation">,</span>
+            combined_stones<span class="token punctuation">,</span>
+            <span class="token punctuation">(</span>self<span class="token punctuation">.</span>liberties <span class="token operator">|</span> go_string<span class="token punctuation">.</span>liberties<span class="token punctuation">)</span> <span class="token operator">-</span> combined_stones<span class="token punctuation">)</span>
+
+    @property
+    <span class="token keyword">def</span> <span class="token function">num_liberties</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> len<span class="token punctuation">(</span>self<span class="token punctuation">.</span>liberties<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">__eq__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> other<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> isinstance<span class="token punctuation">(</span>other<span class="token punctuation">,</span> GoString<span class="token punctuation">)</span> <span class="token operator">and</span> \
+            self<span class="token punctuation">.</span>color <span class="token operator">==</span> other<span class="token punctuation">.</span>color <span class="token operator">and</span> \
+            self<span class="token punctuation">.</span>stones <span class="token operator">==</span> other<span class="token punctuation">.</span>stones <span class="token operator">and</span> \
+            self<span class="token punctuation">.</span>liberties <span class="token operator">==</span> other<span class="token punctuation">.</span>liberties
+</code></pre>
+<pre class=" language-python"><code class="language-python">语法知识补充：
+    <span class="token keyword">def</span> <span class="token function">__eq__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span>other<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">pass</span>
+    返回一个布尔值，来表示两个值是否相等，这里返回两个属性这些所有属性是否相等！
+    <span class="token punctuation">(</span>self<span class="token punctuation">.</span>liberties <span class="token operator">|</span> go_string<span class="token punctuation">.</span>liberties<span class="token punctuation">)</span> <span class="token operator">-</span> combined_stones<span class="token punctuation">)</span>
+    看到这一句很多小伙伴和我一样，可能会有一点蒙，按照我最初的思路，可以得到列表self<span class="token punctuation">.</span>liberties，go_string<span class="token punctuation">.</span>liberties，combined_stones这几个都是列表，怎么可以进行这些操作呢？
+    看来大家都和我一样，忽视了很重要的一点：
+    self<span class="token punctuation">.</span>stones <span class="token operator">=</span> set<span class="token punctuation">(</span>stones<span class="token punctuation">)</span>
+    self<span class="token punctuation">.</span>liberties <span class="token operator">=</span> set<span class="token punctuation">(</span>liberties<span class="token punctuation">)</span>
+    这里两句表明我们忽视了这是一个集合类的事实！
+    因此这里<span class="token operator">|</span>表示并集
+    而<span class="token operator">-</span>表示差集
+</code></pre>
+<h3 id="init-中表明了一个棋链应该具有的属性："><a href="#init-中表明了一个棋链应该具有的属性：" class="headerlink" title="__init__中表明了一个棋链应该具有的属性："></a><code>__init__</code>中表明了一个棋链应该具有的属性：</h3><h3 id="颜色-包含的棋子-以及这个棋链具有的气-特别的无相连棋子的单个棋子也看做为棋链"><a href="#颜色-包含的棋子-以及这个棋链具有的气-特别的无相连棋子的单个棋子也看做为棋链" class="headerlink" title="颜色 包含的棋子 以及这个棋链具有的气 特别的无相连棋子的单个棋子也看做为棋链"></a>颜色 包含的棋子 以及这个棋链具有的气 特别的无相连棋子的单个棋子也看做为棋链</h3><h3 id="气数和棋子在同一位置有且只能有一个有意义因此用set来表示去除重复的一些内容，显然这里的包含的棋子和所拥有的气数应该是一个具有多个棋或者数意义的东西"><a href="#气数和棋子在同一位置有且只能有一个有意义因此用set来表示去除重复的一些内容，显然这里的包含的棋子和所拥有的气数应该是一个具有多个棋或者数意义的东西" class="headerlink" title="气数和棋子在同一位置有且只能有一个有意义因此用set来表示去除重复的一些内容，显然这里的包含的棋子和所拥有的气数应该是一个具有多个棋或者数意义的东西"></a>气数和棋子在同一位置有且只能有一个有意义因此用<code>set</code>来表示去除重复的一些内容，显然这里的包含的棋子和所拥有的气数应该是一个具有多个棋或者数意义的东西</h3><h3 id="去除增加气数（棋子），也理所当然的可以通过在列表中添加或者删除点来实现，而原有的棋链进行改变后要生成一个新的棋链，棋链可以由棋链增加单个棋，也可以由棋链和棋链之间相加，因此需要有merged-with"><a href="#去除增加气数（棋子），也理所当然的可以通过在列表中添加或者删除点来实现，而原有的棋链进行改变后要生成一个新的棋链，棋链可以由棋链增加单个棋，也可以由棋链和棋链之间相加，因此需要有merged-with" class="headerlink" title="去除增加气数（棋子），也理所当然的可以通过在列表中添加或者删除点来实现，而原有的棋链进行改变后要生成一个新的棋链，棋链可以由棋链增加单个棋，也可以由棋链和棋链之间相加，因此需要有merged_with"></a>去除增加气数（棋子），也理所当然的可以通过在列表中添加或者删除点来实现，而原有的棋链进行改变后要生成一个新的棋链，棋链可以由棋链增加单个棋，也可以由棋链和棋链之间相加，因此需要有<code>merged_with</code></h3><h3 id="两个棋链相结合，先断言进行检查，再将两个数组进行结合，返回一个新的棋链，len用来返回一块棋子的气数，PS：也可以表示一个交叉点的气数，同时返回一个类也相当于直接调用了一个-init-来避免出现重复而导致错误的情况！"><a href="#两个棋链相结合，先断言进行检查，再将两个数组进行结合，返回一个新的棋链，len用来返回一块棋子的气数，PS：也可以表示一个交叉点的气数，同时返回一个类也相当于直接调用了一个-init-来避免出现重复而导致错误的情况！" class="headerlink" title="两个棋链相结合，先断言进行检查，再将两个数组进行结合，返回一个新的棋链，len用来返回一块棋子的气数，PS：也可以表示一个交叉点的气数，同时返回一个类也相当于直接调用了一个__init__来避免出现重复而导致错误的情况！"></a>两个棋链相结合，先断言进行检查，再将两个数组进行结合，返回一个新的棋链，<code>len</code>用来返回一块棋子的气数，PS：也可以表示一个交叉点的气数，同时返回一个类也相当于直接调用了一个<code>__init__</code>来避免出现重复而导致错误的情况！</h3><h2 id="2-棋盘上的提子和落子（Board-定义一个棋盘类）"><a href="#2-棋盘上的提子和落子（Board-定义一个棋盘类）" class="headerlink" title="(2)棋盘上的提子和落子（Board()定义一个棋盘类）"></a>(2)棋盘上的提子和落子（<code>Board()</code>定义一个棋盘类）</h2><h3 id="我们需要一个棋盘类来跟踪和这些的变化，完成合并，增减双方的气，拿掉气尽的棋子的作用-这里对代码进行分块，注意归属于这一序号内的所用内容，都是属于Board-这个类"><a href="#我们需要一个棋盘类来跟踪和这些的变化，完成合并，增减双方的气，拿掉气尽的棋子的作用-这里对代码进行分块，注意归属于这一序号内的所用内容，都是属于Board-这个类" class="headerlink" title="我们需要一个棋盘类来跟踪和这些的变化，完成合并，增减双方的气，拿掉气尽的棋子的作用,这里对代码进行分块，注意归属于这一序号内的所用内容，都是属于Board()这个类"></a>我们需要一个棋盘类来跟踪和这些的变化，完成合并，增减双方的气，拿掉气尽的棋子的作用,这里对代码进行分块，注意归属于这一序号内的所用内容，都是属于<code>Board()</code>这个类</h3><h3 id="a-创建Board-类"><a href="#a-创建Board-类" class="headerlink" title="a. 创建Board()类"></a>a. 创建<code>Board()</code>类</h3><pre class=" language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Board</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> num_rows<span class="token punctuation">,</span> num_cols<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>num_rows <span class="token operator">=</span> num_rows
+        self<span class="token punctuation">.</span>num_cols <span class="token operator">=</span> num_cols
+        self<span class="token punctuation">.</span>_grid <span class="token operator">=</span> <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;&amp;#125;</span>
+        <span class="token comment" spellcheck="true"># self._hash = zobrist.EMPTY_BOARD</span>
+</code></pre>
+<h3 id="这里可以看到我们可以改变的围棋的行列的数目"><a href="#这里可以看到我们可以改变的围棋的行列的数目" class="headerlink" title="这里可以看到我们可以改变的围棋的行列的数目"></a>这里可以看到我们可以改变的围棋的行列的数目</h3><h3 id="首先我们定义我们需要使用的方法"><a href="#首先我们定义我们需要使用的方法" class="headerlink" title="首先我们定义我们需要使用的方法"></a>首先我们定义我们需要使用的方法</h3><pre class=" language-python"><code class="language-python">    <span class="token keyword">def</span> <span class="token function">is_on_grid</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> point<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token number">1</span> <span class="token operator">&lt;=</span> point<span class="token punctuation">.</span>row <span class="token operator">&lt;=</span> self<span class="token punctuation">.</span>num_rows <span class="token operator">and</span> \
+            <span class="token number">1</span> <span class="token operator">&lt;=</span> point<span class="token punctuation">.</span>col <span class="token operator">&lt;=</span> self<span class="token punctuation">.</span>num_cols
+
+    <span class="token keyword">def</span> <span class="token function">get</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> point<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        string <span class="token operator">=</span> self<span class="token punctuation">.</span>_grid<span class="token punctuation">.</span>get<span class="token punctuation">(</span>point<span class="token punctuation">)</span>
+        <span class="token keyword">if</span> string <span class="token keyword">is</span> None<span class="token punctuation">:</span>
+            <span class="token keyword">return</span> None
+        <span class="token keyword">return</span> string<span class="token punctuation">.</span>color
+
+    <span class="token keyword">def</span> <span class="token function">get_go_string</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> point<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        string <span class="token operator">=</span> self<span class="token punctuation">.</span>_grid<span class="token punctuation">.</span>get<span class="token punctuation">(</span>point<span class="token punctuation">)</span>
+        <span class="token keyword">if</span> string <span class="token keyword">is</span> None<span class="token punctuation">:</span>
+            <span class="token keyword">return</span> None
+        <span class="token keyword">return</span> string
+</code></pre>
+<pre class=" language-python"><code class="language-python">语法知识补充：
+这里的get为重写的类中的方法：
+    我们进入到后文中代码中的get方法：
+    <span class="token keyword">class</span> <span class="token class-name">Mapping</span><span class="token punctuation">(</span>_Collection<span class="token punctuation">[</span>_KT<span class="token punctuation">]</span><span class="token punctuation">,</span> Generic<span class="token punctuation">[</span>_KT<span class="token punctuation">,</span> _VT_co<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    @overload
+    <span class="token keyword">def</span> <span class="token function">get</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> key<span class="token punctuation">:</span> _KT<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> Optional<span class="token punctuation">[</span>_VT_co<span class="token punctuation">]</span><span class="token punctuation">:</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    这里表明get在这里是可以被重写的，我们上面所做的工作就是将这个get方法重写了，返回该点所在的color（如果有的话），没有的话就返回none
+</code></pre>
+<h3 id="第一个在不在棋盘上通过之前定义的point类中的行和列来进行检验"><a href="#第一个在不在棋盘上通过之前定义的point类中的行和列来进行检验" class="headerlink" title="第一个在不在棋盘上通过之前定义的point类中的行和列来进行检验"></a>第一个在不在棋盘上通过之前定义的point类中的行和列来进行检验</h3><h3 id="b-创建一个落子的方法"><a href="#b-创建一个落子的方法" class="headerlink" title="b. 创建一个落子的方法"></a>b. 创建一个落子的方法</h3><pre class=" language-python"><code class="language-python">     <span class="token keyword">def</span> <span class="token function">place_stone</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> player<span class="token punctuation">,</span> point<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment" spellcheck="true">#  由于是落子，所以point是单个棋子</span>
+        <span class="token keyword">assert</span> self<span class="token punctuation">.</span>is_on_grid<span class="token punctuation">(</span>point<span class="token punctuation">)</span>
+        <span class="token keyword">if</span> self<span class="token punctuation">.</span>_grid<span class="token punctuation">.</span>get<span class="token punctuation">(</span>point<span class="token punctuation">)</span> <span class="token keyword">is</span> <span class="token operator">not</span> None<span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Illegal play on %s'</span> <span class="token operator">%</span> str<span class="token punctuation">(</span>point<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">assert</span> self<span class="token punctuation">.</span>_grid<span class="token punctuation">.</span>get<span class="token punctuation">(</span>point<span class="token punctuation">)</span> <span class="token keyword">is</span> None
+        <span class="token comment" spellcheck="true"># 0. Examine the adjacent points.</span>
+        <span class="token comment" spellcheck="true"># 检查该点是否已经有子</span>
+        adjacent_same_color <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+        <span class="token comment" spellcheck="true"># 相邻的同颜色的棋子</span>
+        adjacent_opposite_color <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+        <span class="token comment" spellcheck="true"># 相邻的不同颜色的棋子</span>
+        liberties <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+        <span class="token keyword">for</span> neighbor <span class="token keyword">in</span> point<span class="token punctuation">.</span>neighbors<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token comment" spellcheck="true"># 通过这个循环来链接棋链，和进行气数的检查</span>
+            <span class="token keyword">if</span> <span class="token operator">not</span> self<span class="token punctuation">.</span>is_on_grid<span class="token punctuation">(</span>neighbor<span class="token punctuation">)</span><span class="token punctuation">:</span>
+                <span class="token keyword">continue</span>
+            <span class="token comment" spellcheck="true"># 如果不在棋盘上，就终止这次循环</span>
+            neighbor_string <span class="token operator">=</span> self<span class="token punctuation">.</span>_grid<span class="token punctuation">.</span>get<span class="token punctuation">(</span>neighbor<span class="token punctuation">)</span>
+            <span class="token comment" spellcheck="true"># 根据自己重写的方法，这里使用只会返回三个值：棋手中的黑白两类，以及none</span>
+            <span class="token keyword">if</span> neighbor_string <span class="token keyword">is</span> None<span class="token punctuation">:</span>
+                liberties<span class="token punctuation">.</span>append<span class="token punctuation">(</span>neighbor<span class="token punctuation">)</span>
+            <span class="token keyword">elif</span> neighbor_string<span class="token punctuation">.</span>color <span class="token operator">==</span> player<span class="token punctuation">:</span>
+                <span class="token keyword">if</span> neighbor_string <span class="token operator">not</span> <span class="token keyword">in</span> adjacent_same_color<span class="token punctuation">:</span>
+                    adjacent_same_color<span class="token punctuation">.</span>append<span class="token punctuation">(</span>neighbor_string<span class="token punctuation">)</span>
+            <span class="token keyword">else</span><span class="token punctuation">:</span>
+                <span class="token keyword">if</span> neighbor_string <span class="token operator">not</span> <span class="token keyword">in</span> adjacent_opposite_color<span class="token punctuation">:</span>
+                    adjacent_opposite_color<span class="token punctuation">.</span>append<span class="token punctuation">(</span>neighbor_string<span class="token punctuation">)</span>
+        <span class="token comment" spellcheck="true"># 建立由这个点组成的棋链，不单独使用棋子相加，是为了使程序更加拥有通用性</span>
+        new_string <span class="token operator">=</span> GoString<span class="token punctuation">(</span>player<span class="token punctuation">,</span> <span class="token punctuation">[</span>point<span class="token punctuation">]</span><span class="token punctuation">,</span> liberties<span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># tag::apply_zobrist[]</span>
+        new_string <span class="token operator">=</span> GoString<span class="token punctuation">(</span>player<span class="token punctuation">,</span> <span class="token punctuation">[</span>point<span class="token punctuation">]</span><span class="token punctuation">,</span> liberties<span class="token punctuation">)</span>  
+</code></pre>
+<h3 id="我们下面做的就是将棋链棋链之间相连，气相连，棋子相连，这些已经在之前的类中写好了"><a href="#我们下面做的就是将棋链棋链之间相连，气相连，棋子相连，这些已经在之前的类中写好了" class="headerlink" title="我们下面做的就是将棋链棋链之间相连，气相连，棋子相连，这些已经在之前的类中写好了"></a>我们下面做的就是将棋链棋链之间相连，气相连，棋子相连，这些已经在之前的类中写好了</h3><pre class=" language-python"><code class="language-python">    <span class="token keyword">for</span> same_color_string <span class="token keyword">in</span> adjacent_same_color<span class="token punctuation">:</span>  
+        new_string <span class="token operator">=</span> new_string<span class="token punctuation">.</span>merged_with<span class="token punctuation">(</span>same_color_string<span class="token punctuation">)</span>
+        <span class="token comment" spellcheck="true"># 链接相邻的棋链</span>
+    <span class="token keyword">for</span> new_string_point <span class="token keyword">in</span> new_string<span class="token punctuation">.</span>stones<span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>_grid<span class="token punctuation">[</span>new_string_point<span class="token punctuation">]</span> <span class="token operator">=</span> new_string
+        <span class="token comment" spellcheck="true"># 使得棋子和棋链互相对应</span>
+    <span class="token keyword">for</span> other_color_string <span class="token keyword">in</span> adjacent_opposite_color<span class="token punctuation">:</span>  
+        other_color_string<span class="token punctuation">.</span>remove_liberty<span class="token punctuation">(</span>point<span class="token punctuation">)</span>
+        <span class="token comment" spellcheck="true"># 旁边有棋子就需要移走对应棋子的气</span>
+    <span class="token keyword">for</span> other_color_string <span class="token keyword">in</span> adjacent_opposite_color<span class="token punctuation">:</span>  
+        <span class="token comment" spellcheck="true"># 这里考虑吃别的棋，却没有考虑自吃的原因是因为，后来我们会对这个特殊的情况进行定义</span>
+        <span class="token keyword">if</span> other_color_string<span class="token punctuation">.</span>num_liberties <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>_remove_string<span class="token punctuation">(</span>other_color_string<span class="token punctuation">)</span>
+        <span class="token comment" spellcheck="true"># 到这里我们发现我们还没有定义上面的self._remove_string()还没被定义</span>
+</code></pre>
+<h3 id="对没有定义完的方法进行定义"><a href="#对没有定义完的方法进行定义" class="headerlink" title="对没有定义完的方法进行定义"></a>对没有定义完的方法进行定义</h3><pre class=" language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">_remove_string</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> string<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">for</span> point <span class="token keyword">in</span> string<span class="token punctuation">.</span>stones<span class="token punctuation">:</span>
+        <span class="token keyword">for</span> neighbor <span class="token keyword">in</span> point<span class="token punctuation">.</span>neighbors<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>  
+            neighbor_string <span class="token operator">=</span> self<span class="token punctuation">.</span>_grid<span class="token punctuation">.</span>get<span class="token punctuation">(</span>neighbor<span class="token punctuation">)</span>
+            <span class="token comment" spellcheck="true"># 拿到旁边所在的点</span>
+            <span class="token keyword">if</span> neighbor_string <span class="token keyword">is</span> None<span class="token punctuation">:</span>
+                <span class="token keyword">continue</span>
+            <span class="token keyword">if</span> neighbor_string <span class="token keyword">is</span> <span class="token operator">not</span> string<span class="token punctuation">:</span>
+            <span class="token comment" spellcheck="true"># 增加旁边点影响的气</span>
+                neighbor_string<span class="token punctuation">.</span>add_liberty<span class="token punctuation">(</span>point<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>_grid<span class="token punctuation">[</span>point<span class="token punctuation">]</span> <span class="token operator">=</span> None
+</code></pre>
+<h3 id="这里就是对传入的去棋链进行遍历-移除所有它曾经造成的影响-并从定义的棋盘类中将其删除-完成他的删除"><a href="#这里就是对传入的去棋链进行遍历-移除所有它曾经造成的影响-并从定义的棋盘类中将其删除-完成他的删除" class="headerlink" title="这里就是对传入的去棋链进行遍历,移除所有它曾经造成的影响,并从定义的棋盘类中将其删除,完成他的删除"></a>这里就是对传入的去棋链进行遍历,移除所有它曾经造成的影响,并从定义的棋盘类中将其删除,完成他的删除</h3><h3 id="这里还有一个函数检验这个是否是一个相同的棋局"><a href="#这里还有一个函数检验这个是否是一个相同的棋局" class="headerlink" title="这里还有一个函数检验这个是否是一个相同的棋局:"></a>这里还有一个函数检验这个是否是一个相同的棋局:</h3><pre class=" language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">__eq__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> other<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> isinstance<span class="token punctuation">(</span>other<span class="token punctuation">,</span> Board<span class="token punctuation">)</span> <span class="token operator">and</span> \
+        self<span class="token punctuation">.</span>num_rows <span class="token operator">==</span> other<span class="token punctuation">.</span>num_rows <span class="token operator">and</span> \
+        self<span class="token punctuation">.</span>num_cols <span class="token operator">==</span> other<span class="token punctuation">.</span>num_cols <span class="token operator">and</span> \
+        self<span class="token punctuation">.</span>_grid <span class="token operator">==</span> other<span class="token punctuation">.</span>_grid
+</code></pre>
+<h3 id="检查类和类中的属性是否相同，进而检验，具体使用方法上面已经有所说明"><a href="#检查类和类中的属性是否相同，进而检验，具体使用方法上面已经有所说明" class="headerlink" title="检查类和类中的属性是否相同，进而检验，具体使用方法上面已经有所说明"></a>检查类和类中的属性是否相同，进而检验，具体使用方法上面已经有所说明</h3><hr>
+<h1 id="2-跟踪游戏状态并且检查非法的动作"><a href="#2-跟踪游戏状态并且检查非法的动作" class="headerlink" title="2.跟踪游戏状态并且检查非法的动作"></a>2.跟踪游戏状态并且检查非法的动作</h1><h2 id="1-跟踪游戏状态"><a href="#1-跟踪游戏状态" class="headerlink" title="(1) 跟踪游戏状态"></a>(1) 跟踪游戏状态</h2><h3 id="首先我们要对当前游戏的状态进行储存-定义相应的围棋状态类，从下面的程序可以知道我们要传入board-next-player-previous-move-这几个对象，传入move用来表示传入的点，这个通过对move的属性调用获得"><a href="#首先我们要对当前游戏的状态进行储存-定义相应的围棋状态类，从下面的程序可以知道我们要传入board-next-player-previous-move-这几个对象，传入move用来表示传入的点，这个通过对move的属性调用获得" class="headerlink" title="首先我们要对当前游戏的状态进行储存,定义相应的围棋状态类，从下面的程序可以知道我们要传入board,next_player,previous,move,这几个对象，传入move用来表示传入的点，这个通过对move的属性调用获得"></a>首先我们要对当前游戏的状态进行储存,定义相应的围棋状态类，从下面的程序可以知道我们要传入<code>board</code>,<code>next_player</code>,<code>previous</code>,<code>move</code>,这几个对象，传入<code>move</code>用来表示传入的点，这个通过对<code>move</code>的属性调用获得</h3><pre class=" language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">GameState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> board<span class="token punctuation">,</span> next_player<span class="token punctuation">,</span> previous<span class="token punctuation">,</span> move<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>board <span class="token operator">=</span> board
+        self<span class="token punctuation">.</span>next_player <span class="token operator">=</span> next_player
+        self<span class="token punctuation">.</span>previous_state <span class="token operator">=</span> previous
+        self<span class="token punctuation">.</span>last_move <span class="token operator">=</span> move
+<span class="token comment" spellcheck="true"># 这里的previous的存在相当于一个链表，可以从这里一直指向之前的状态</span>
+</code></pre>
+<h3 id="下面这个用来表示应用步数的移动"><a href="#下面这个用来表示应用步数的移动" class="headerlink" title="下面这个用来表示应用步数的移动"></a>下面这个用来表示应用步数的移动</h3><pre class=" language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">apply_move</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> move<span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment" spellcheck="true"># &lt;1></span>
+    <span class="token keyword">if</span> move<span class="token punctuation">.</span>is_play<span class="token punctuation">:</span>
+        next_board <span class="token operator">=</span> copy<span class="token punctuation">.</span>deepcopy<span class="token punctuation">(</span>self<span class="token punctuation">.</span>board<span class="token punctuation">)</span>
+        next_board<span class="token punctuation">.</span>place_stone<span class="token punctuation">(</span>self<span class="token punctuation">.</span>next_player<span class="token punctuation">,</span> move<span class="token punctuation">.</span>point<span class="token punctuation">)</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        next_board <span class="token operator">=</span> self<span class="token punctuation">.</span>board
+    <span class="token keyword">return</span> GameState<span class="token punctuation">(</span>next_board<span class="token punctuation">,</span> self<span class="token punctuation">.</span>next_player<span class="token punctuation">.</span>other<span class="token punctuation">,</span> self<span class="token punctuation">,</span> move<span class="token punctuation">)</span>
+</code></pre>
+<h3 id="通过对board中的属性进行调用来进行步数的移动，首先对board进行深度复制，在应用place-stone对新的步数进行记录，所有的一切都是通过board中的进行记录，回顾之前的知识，我们可以了解到，为了节约算力，我们通过棋盘对应棋链的字典实现了精简算力"><a href="#通过对board中的属性进行调用来进行步数的移动，首先对board进行深度复制，在应用place-stone对新的步数进行记录，所有的一切都是通过board中的进行记录，回顾之前的知识，我们可以了解到，为了节约算力，我们通过棋盘对应棋链的字典实现了精简算力" class="headerlink" title="通过对board中的属性进行调用来进行步数的移动，首先对board进行深度复制，在应用place_stone对新的步数进行记录，所有的一切都是通过board中的进行记录，回顾之前的知识，我们可以了解到，为了节约算力，我们通过棋盘对应棋链的字典实现了精简算力"></a>通过对<code>board</code>中的属性进行调用来进行步数的移动，首先对<code>board</code>进行深度复制，在应用<code>place_stone</code>对新的步数进行记录，所有的一切都是通过<code>board</code>中的进行记录，回顾之前的知识，我们可以了解到，为了节约算力，我们通过棋盘对应棋链的字典实现了精简算力</h3><h3 id="下面是实现游戏的开始和结束的类"><a href="#下面是实现游戏的开始和结束的类" class="headerlink" title="下面是实现游戏的开始和结束的类"></a>下面是实现游戏的开始和结束的类</h3><pre class=" language-python"><code class="language-python"> @classmethod
+    <span class="token keyword">def</span> <span class="token function">new_game</span><span class="token punctuation">(</span>cls<span class="token punctuation">,</span> board_size<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> isinstance<span class="token punctuation">(</span>board_size<span class="token punctuation">,</span> int<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            board_size <span class="token operator">=</span> <span class="token punctuation">(</span>board_size<span class="token punctuation">,</span> board_size<span class="token punctuation">)</span>
+        board <span class="token operator">=</span> Board<span class="token punctuation">(</span><span class="token operator">*</span>board_size<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> GameState<span class="token punctuation">(</span>board<span class="token punctuation">,</span> Player<span class="token punctuation">.</span>black<span class="token punctuation">,</span> None<span class="token punctuation">,</span> None<span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># 可以直接调用GameState.new_game() 棋盘尺寸来获得一个初始的游戏状态类</span>
+<span class="token keyword">def</span> <span class="token function">is_over</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> self<span class="token punctuation">.</span>last_move <span class="token keyword">is</span> None<span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token boolean">False</span>
+    <span class="token keyword">if</span> self<span class="token punctuation">.</span>last_move<span class="token punctuation">.</span>is_resign<span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token boolean">True</span>
+    second_last_move <span class="token operator">=</span> self<span class="token punctuation">.</span>previous_state<span class="token punctuation">.</span>last_move
+    <span class="token keyword">if</span> second_last_move <span class="token keyword">is</span> None<span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token boolean">False</span>
+    <span class="token keyword">return</span> self<span class="token punctuation">.</span>last_move<span class="token punctuation">.</span>is_pass <span class="token operator">and</span> second_last_move<span class="token punctuation">.</span>is_pass
+</code></pre>
+<pre class=" language-python"><code class="language-python">语法知识补充：
+    board <span class="token operator">=</span> Board<span class="token punctuation">(</span><span class="token operator">*</span>board_size<span class="token punctuation">)</span>
+    这里可能很多人会疑问为什么要用 <span class="token operator">*</span> ，学过c的同学很有可能把它以为是指针
+    其实python中并不是这个意思，而且我将说明<span class="token operator">*</span>和<span class="token operator">**</span>用法
+    注意到我们传入的board_size是一个数组，而我们的Board<span class="token punctuation">(</span><span class="token punctuation">)</span>需要传入两个值，row和cow，即行和列，因此由用法可以推知原理，这个<span class="token operator">*</span>是解包的意思
+    更标准的说法：函数在调用多个参数时，在列表、元组、集合、字典及其他可迭代对象作为实参，并在前面加 <span class="token operator">*</span>
+    对于<span class="token operator">**</span>： <span class="token operator">**</span>parameter用于接收类似于关键参数一样赋值的形式的多个实参放入字典中（即把该函数的参数转换为字典）。
+    我们对第二个举一个例子：
+    <span class="token keyword">def</span> <span class="token function">demo</span><span class="token punctuation">(</span><span class="token operator">**</span>p<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> p<span class="token punctuation">.</span>items<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span>      
+    demo<span class="token punctuation">(</span>x<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span>y<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span>
+    <span class="token operator">>></span><span class="token operator">></span><span class="token punctuation">(</span><span class="token string">'x'</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+        <span class="token punctuation">(</span><span class="token string">'y'</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span>
+    有一点类似于<span class="token operator">*</span>asgs，<span class="token operator">*</span>argv这个用法
+</code></pre>
+<h3 id="如果投降，游戏结束，两个人都停一手，游戏结束。"><a href="#如果投降，游戏结束，两个人都停一手，游戏结束。" class="headerlink" title="如果投降，游戏结束，两个人都停一手，游戏结束。"></a>如果投降，游戏结束，两个人都停一手，游戏结束。</h3><h2 id="2-检测非法动作"><a href="#2-检测非法动作" class="headerlink" title="(2) 检测非法动作"></a>(2) 检测非法动作</h2><h3 id="大体上非法动作可能是由于一下原因造成的：落子的位置已经有子，落子导致自己气尽，落子违反劫争规则，我们先避免看起来复杂的后两项。这些都将加在GameState中。"><a href="#大体上非法动作可能是由于一下原因造成的：落子的位置已经有子，落子导致自己气尽，落子违反劫争规则，我们先避免看起来复杂的后两项。这些都将加在GameState中。" class="headerlink" title="大体上非法动作可能是由于一下原因造成的：落子的位置已经有子，落子导致自己气尽，落子违反劫争规则，我们先避免看起来复杂的后两项。这些都将加在GameState中。"></a>大体上非法动作可能是由于一下原因造成的：落子的位置已经有子，落子导致自己气尽，落子违反劫争规则，我们先避免看起来复杂的后两项。这些都将加在<code>GameState</code>中。</h3><h3 id="a-自吃"><a href="#a-自吃" class="headerlink" title="a. 自吃"></a><strong>a. 自吃</strong></h3><pre class=" language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">is_move_self_capture</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> player<span class="token punctuation">,</span> move<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> <span class="token operator">not</span> move<span class="token punctuation">.</span>is_play<span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token boolean">False</span>
+    next_board <span class="token operator">=</span> copy<span class="token punctuation">.</span>deepcopy<span class="token punctuation">(</span>self<span class="token punctuation">.</span>board<span class="token punctuation">)</span>
+    next_board<span class="token punctuation">.</span>place_stone<span class="token punctuation">(</span>player<span class="token punctuation">,</span> move<span class="token punctuation">.</span>point<span class="token punctuation">)</span>
+    new_string <span class="token operator">=</span> next_board<span class="token punctuation">.</span>get_go_string<span class="token punctuation">(</span>move<span class="token punctuation">.</span>point<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> new_string<span class="token punctuation">.</span>num_liberties <span class="token operator">==</span> <span class="token number">0</span>
+</code></pre>
+<h3 id="这里通过对气数进行判断，返回一个bool值进而判断这一步能否成立"><a href="#这里通过对气数进行判断，返回一个bool值进而判断这一步能否成立" class="headerlink" title="这里通过对气数进行判断，返回一个bool值进而判断这一步能否成立"></a>这里通过对气数进行判断，返回一个bool值进而判断这一步能否成立</h3><h3 id="b-劫争"><a href="#b-劫争" class="headerlink" title="b.劫争"></a><strong>b.劫争</strong></h3><h3 id="不违反劫争的意义就是不能让棋局回到之前的状态"><a href="#不违反劫争的意义就是不能让棋局回到之前的状态" class="headerlink" title="不违反劫争的意义就是不能让棋局回到之前的状态"></a>不违反劫争的意义就是不能让棋局回到之前的状态</h3><pre class=" language-python"><code class="language-python"> @property
+    <span class="token keyword">def</span> <span class="token function">situation</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token punctuation">(</span>self<span class="token punctuation">.</span>next_player<span class="token punctuation">,</span> self<span class="token punctuation">.</span>board<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">does_move_violate_ko</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> player<span class="token punctuation">,</span> move<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> <span class="token operator">not</span> move<span class="token punctuation">.</span>is_play<span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token boolean">False</span>
+        next_board <span class="token operator">=</span> copy<span class="token punctuation">.</span>deepcopy<span class="token punctuation">(</span>self<span class="token punctuation">.</span>board<span class="token punctuation">)</span>
+        next_board<span class="token punctuation">.</span>place_stone<span class="token punctuation">(</span>player<span class="token punctuation">,</span> move<span class="token punctuation">.</span>point<span class="token punctuation">)</span>
+        next_situation <span class="token operator">=</span> <span class="token punctuation">(</span>player<span class="token punctuation">.</span>other<span class="token punctuation">,</span> next_board<span class="token punctuation">)</span>
+        past_state <span class="token operator">=</span> self<span class="token punctuation">.</span>previous_state
+        <span class="token keyword">while</span> past_state <span class="token keyword">is</span> <span class="token operator">not</span> None<span class="token punctuation">:</span>
+            <span class="token keyword">if</span> past_state<span class="token punctuation">.</span>situation <span class="token operator">==</span> next_situation<span class="token punctuation">:</span>
+                <span class="token keyword">return</span> <span class="token boolean">True</span>
+            past_state <span class="token operator">=</span> past_state<span class="token punctuation">.</span>previous_state
+             <span class="token comment" spellcheck="true"># 对这一步有一点小疑问，应该只检查一遍就可以了吧</span>
+        <span class="token keyword">return</span> <span class="token boolean">False</span>
+</code></pre>
+<h3 id="如果返回False说明正常运行，如果返回True说明运行异常，即违反了劫争规则。"><a href="#如果返回False说明正常运行，如果返回True说明运行异常，即违反了劫争规则。" class="headerlink" title="如果返回False说明正常运行，如果返回True说明运行异常，即违反了劫争规则。"></a>如果返回<code>False</code>说明正常运行，如果返回<code>True</code>说明运行异常，即违反了劫争规则。</h3><h3 id="总结了两种违反规则的方式，我们需要对合法动作进行一个总体的实现，定义一个新的函数，违反规则则不可以落子。"><a href="#总结了两种违反规则的方式，我们需要对合法动作进行一个总体的实现，定义一个新的函数，违反规则则不可以落子。" class="headerlink" title="总结了两种违反规则的方式，我们需要对合法动作进行一个总体的实现，定义一个新的函数，违反规则则不可以落子。"></a>总结了两种违反规则的方式，我们需要对合法动作进行一个总体的实现，定义一个新的函数，违反规则则不可以落子。</h3><pre class=" language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">is_valid_move</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> move<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> self<span class="token punctuation">.</span>is_over<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token boolean">False</span>
+        <span class="token comment" spellcheck="true"># 棋局结束，则不能进行回合</span>
+    <span class="token keyword">if</span> move<span class="token punctuation">.</span>is_pass <span class="token operator">or</span> move<span class="token punctuation">.</span>is_resign<span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token boolean">True</span>
+        <span class="token comment" spellcheck="true"># 停一手和投降都是有效的一步</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>
+        self<span class="token punctuation">.</span>board<span class="token punctuation">.</span>get<span class="token punctuation">(</span>move<span class="token punctuation">.</span>point<span class="token punctuation">)</span> <span class="token keyword">is</span> None <span class="token operator">and</span>
+        <span class="token operator">not</span> self<span class="token punctuation">.</span>is_move_self_capture<span class="token punctuation">(</span>self<span class="token punctuation">.</span>next_player<span class="token punctuation">,</span> move<span class="token punctuation">)</span> <span class="token operator">and</span>
+        <span class="token operator">not</span> self<span class="token punctuation">.</span>does_move_violate_ko<span class="token punctuation">(</span>self<span class="token punctuation">.</span>next_player<span class="token punctuation">,</span> move<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token comment" spellcheck="true"># 该点不能有棋子，该点不能违反劫争和自吃</span>
+</code></pre>
+<h2 id="3-终盘"><a href="#3-终盘" class="headerlink" title="3. 终盘"></a>3. 终盘</h2><h3 id="建立agent文件夹，里面判断某个棋局是否有眼"><a href="#建立agent文件夹，里面判断某个棋局是否有眼" class="headerlink" title="建立agent文件夹，里面判断某个棋局是否有眼"></a>建立agent文件夹，里面判断某个棋局是否有眼</h3><pre class=" language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">is_point_an_eye</span><span class="token punctuation">(</span>board<span class="token punctuation">,</span> point<span class="token punctuation">,</span> color<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> board<span class="token punctuation">.</span>get<span class="token punctuation">(</span>point<span class="token punctuation">)</span> <span class="token keyword">is</span> <span class="token operator">not</span> None<span class="token punctuation">:</span>  <span class="token comment" spellcheck="true"># &lt;1></span>
+        <span class="token keyword">return</span> <span class="token boolean">False</span>
+    <span class="token comment" spellcheck="true"># 不能填死自己的眼</span>
+    <span class="token keyword">for</span> neighbor <span class="token keyword">in</span> point<span class="token punctuation">.</span>neighbors<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment" spellcheck="true"># &lt;2></span>
+        <span class="token keyword">if</span> board<span class="token punctuation">.</span>is_on_grid<span class="token punctuation">(</span>neighbor<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            neighbor_color <span class="token operator">=</span> board<span class="token punctuation">.</span>get<span class="token punctuation">(</span>neighbor<span class="token punctuation">)</span>
+            <span class="token keyword">if</span> neighbor_color <span class="token operator">!=</span> color<span class="token punctuation">:</span>
+                <span class="token keyword">return</span> <span class="token boolean">False</span>
+    <span class="token comment" spellcheck="true"># 如果周围都不是自己的棋子则一定不是眼</span>
+    friendly_corners <span class="token operator">=</span> <span class="token number">0</span>  
+    off_board_corners <span class="token operator">=</span> <span class="token number">0</span>
+    corners <span class="token operator">=</span> <span class="token punctuation">[</span>
+        Point<span class="token punctuation">(</span>point<span class="token punctuation">.</span>row <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">,</span> point<span class="token punctuation">.</span>col <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        Point<span class="token punctuation">(</span>point<span class="token punctuation">.</span>row <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">,</span> point<span class="token punctuation">.</span>col <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        Point<span class="token punctuation">(</span>point<span class="token punctuation">.</span>row <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> point<span class="token punctuation">.</span>col <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        Point<span class="token punctuation">(</span>point<span class="token punctuation">.</span>row <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> point<span class="token punctuation">.</span>col <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span>
+    <span class="token keyword">for</span> corner <span class="token keyword">in</span> corners<span class="token punctuation">:</span>
+        <span class="token keyword">if</span> board<span class="token punctuation">.</span>is_on_grid<span class="token punctuation">(</span>corner<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            corner_color <span class="token operator">=</span> board<span class="token punctuation">.</span>get<span class="token punctuation">(</span>corner<span class="token punctuation">)</span>
+            <span class="token keyword">if</span> corner_color <span class="token operator">==</span> color<span class="token punctuation">:</span>
+                friendly_corners <span class="token operator">+=</span> <span class="token number">1</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            off_board_corners <span class="token operator">+=</span> <span class="token number">1</span>
+    <span class="token comment" spellcheck="true"># 在棋盘上则判断角点是不是自己的棋子</span>
+    <span class="token keyword">if</span> off_board_corners <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> off_board_corners <span class="token operator">+</span> friendly_corners <span class="token operator">==</span> <span class="token number">4</span>  <span class="token comment" spellcheck="true"># &lt;4></span>
+    <span class="token comment" spellcheck="true"># 如果在棋盘边缘，那么需要满足这个条件</span>
+    <span class="token keyword">return</span> friendly_corners <span class="token operator">>=</span> <span class="token number">3</span>  <span class="token comment" spellcheck="true"># &lt;5></span>
+    <span class="token comment" spellcheck="true"># 如果不在棋盘边缘，需要满足这个条件</span>
+</code></pre>
+<h3 id="这里对眼的定义还是有缺点"><a href="#这里对眼的定义还是有缺点" class="headerlink" title="这里对眼的定义还是有缺点"></a>这里对眼的定义还是有缺点</h3><h2 id="4-创建第一个机器人"><a href="#4-创建第一个机器人" class="headerlink" title="4. 创建第一个机器人"></a>4. 创建第一个机器人</h2><h3 id="这里我们会学到一些技巧，也就是做一个python包的技巧"><a href="#这里我们会学到一些技巧，也就是做一个python包的技巧" class="headerlink" title="这里我们会学到一些技巧，也就是做一个python包的技巧"></a>这里我们会学到一些技巧，也就是做一个python包的技巧</h3>
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        Author:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">郭毅</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        Link:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://codedetermination.github.io/2021/04/10/weiqi0/">http://codedetermination.github.io/2021/04/10/weiqi0/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        Reprint policy:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    All articles in this blog are used except for special statements
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    reprint policy. If reproduced, please indicate source
+                    <a href="/about" target="_blank">郭毅</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>Copied successfully, please follow the reprint policy of this article</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">more</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%8E%E5%9B%B4%E6%A3%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">
+                                    <span class="chip bg-color">深度学习与围棋读书笔记</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+            <div class="card">
+                <a href="/2021/04/11/blog3/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="人生的思考与感悟(一)">
+                        
+                        <span class="card-title">人生的思考与感悟(一)</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-04-11
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            郭毅
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E4%BA%BA%E7%94%9F%E4%B8%8E%E7%90%86%E6%83%B3/">
+                        <span class="chip bg-color">人生与理想</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/04/09/blog2/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="对以后学习的规划和理解">
+                        
+                        <span class="card-title">对以后学习的规划和理解</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-04-09
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            郭毅
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%EF%BC%8C%E5%AF%B9%E5%8D%9A%E5%AE%A2%E7%9A%84%E7%90%86%E8%A7%A3/">
+                        <span class="chip bg-color">学习之路，对博客的理解</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="6700561450"
+                   fixed='true'
+                   autoplay='true'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2021</span>
+            
+            <span id="year">2021</span>
+            <a href="/about" target="_blank">郭毅</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2021";
+                    var startMonth = "4";
+                    var startDate = "7";
+                    var startHour = "18";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/codedetermination" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1686477193@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1686477193" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1686477193" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
