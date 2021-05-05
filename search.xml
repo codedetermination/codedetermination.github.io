@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>ubuntu qt动态库的问题</title>
+      <link href="2021/05/04/blog5/"/>
+      <url>2021/05/04/blog5/</url>
+      
+        <content type="html"><![CDATA[<p>昨天心血来潮来配置dobot结果由于ubuntu版本不一致，导致自己在配置的时候出现了一些问题，比如自己为了使用dobot中提供的库，采用环境变量变成了dobot使用的库，但是由于系统本身的库要更新一些，因此出现了兼容的问题，具体表现就是</p><pre class=" language-bash"><code class="language-bash">qt.qpa.plugin: Could not <span class="token function">find</span> the Qt platform plugin <span class="token string">"xcb"</span> <span class="token keyword">in</span> <span class="token string">""</span></code></pre><p>在<code>.bashrc</code>中输入qt调试模式：</p><pre class=" language-bash"><code class="language-bash"><span class="token function">export</span> QT_DEBUG_PLUGINS<span class="token operator">=</span>1</code></pre><p>并且source之后还是出现类似的问题，我找了一下相关程序，但是在他提示的缺失文件夹里面没有找到类似的文件，<br>我从anaconda中进行搜索并且导出相应的platform之后发现了问题所在：</p><pre class=" language-bash"><code class="language-bash">Cannot mix incompatible Qt library <span class="token punctuation">(</span>version 0x50c08<span class="token punctuation">)</span> with this library <span class="token punctuation">(</span>version 0x50c02<span class="token punctuation">)</span></code></pre><p>可以看到系统不能识别两个版本的qt因此我们有了指向性<br>```bash</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> ubuntu </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>思考与感悟</title>
       <link href="2021/04/30/blog4/"/>
       <url>2021/04/30/blog4/</url>
