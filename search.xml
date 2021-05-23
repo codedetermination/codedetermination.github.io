@@ -4,6 +4,82 @@
   
     
     <entry>
+      <title>ros_controller</title>
+      <link href="2021/05/23/blog9/"/>
+      <url>2021/05/23/blog9/</url>
+      
+        <content type="html"><![CDATA[<p>contoller 插件里面继承 model 插件<br>move_group ? ros_control?<br>ros control 继承自 model plugin这个类</p><ol><li>如果每个关节写，可能会非常复杂</li><li>提取公共信息使用ros control</li></ol><p>gazebo里面需要有相关的ros_control信息才能正常运行<br>这个需要在urdf文件里面进行相应的配置<br>一般是单独放在一个文件夹里面 然后需要使用相应的include<br>进行引用</p><h3 id="ros-control插件完成了和gazebo的通信，"><a href="#ros-control插件完成了和gazebo的通信，" class="headerlink" title="ros control插件完成了和gazebo的通信，"></a>ros control插件完成了和gazebo的通信，</h3><h3 id="ros-control插件还完成了controler-manager的启动"><a href="#ros-control插件还完成了controler-manager的启动" class="headerlink" title="ros control插件还完成了controler manager的启动"></a>ros control插件还完成了controler manager的启动</h3><h3 id="标志：loading-gazebo-ros-contorl-plugin"><a href="#标志：loading-gazebo-ros-contorl-plugin" class="headerlink" title="标志：loading gazebo_ros_contorl plugin"></a>标志：loading gazebo_ros_contorl plugin</h3><pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>gazebo</span><span class="token punctuation">></span></span>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>plugin</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>gazebo_ros_control<span class="token punctuation">"</span></span> <span class="token attr-name">filename</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>libgazebo_ros_control.so<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>robotSimType</span><span class="token punctuation">></span></span>gazebo_ros_control/DefaultRobotHWSim<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>robotSimType</span><span class="token punctuation">></span></span>      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>legacyModeNS</span><span class="token punctuation">></span></span>true<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>legacyModeNS</span><span class="token punctuation">></span></span>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>plugin</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>gazebo</span><span class="token punctuation">></span></span></code></pre><h3 id="查看controller相关的一些信息"><a href="#查看controller相关的一些信息" class="headerlink" title="查看controller相关的一些信息"></a>查看controller相关的一些信息</h3><pre class=" language-shell"><code class="language-shell">rosservice call /controller_manager/list_controller_types</code></pre>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> ros </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>相机相关问题</title>
+      <link href="2021/05/22/blog8/"/>
+      <url>2021/05/22/blog8/</url>
+      
+        <content type="html"><![CDATA[<p>相机坐标变换：<br>(<a href="http://robot.czxy.com/docs/camera/chapter01/04-coordinates/">http://robot.czxy.com/docs/camera/chapter01/04-coordinates/</a>)<br>在这里可以看到相关的相机标定相关的知识</p><p>相机的畸变来自于两个方面：</p><ol><li><p>畸变参数<br>透镜的性质导致的畸变，每个相机都有，可以通过标定来实现</p></li><li><p>径向畸变<br>来源于向国际组装<br>可以用两个参数来表示<br>(<a href="http://robot.czxy.com/docs/camera/chapter01/05-distortions/">http://robot.czxy.com/docs/camera/chapter01/05-distortions/</a>)</p></li></ol>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 相机 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>ros出现过的问题</title>
+      <link href="2021/05/19/blog7/"/>
+      <url>2021/05/19/blog7/</url>
+      
+        <content type="html"><![CDATA[<p>launch param的理解：<br>如果是node节点下面的param就是name是命名空间和参数 value就是参数值<br>如果是rosparam file设置加载的文件的路径 param是参数名称 ns是命名空间<br>将文件配置到服务器 然后从服务器中获取参数<br>type是用来表示文件的ns，命名空间 </p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> ros </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>ros与arudino交互踩坑</title>
+      <link href="2021/05/07/blog6/"/>
+      <url>2021/05/07/blog6/</url>
+      
+        <content type="html"><![CDATA[<p>这几天遇到一些bug，自己最终都解决了，在这里记录一下：<br>首先是</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> ros </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>ubuntu qt动态库的问题</title>
       <link href="2021/05/04/blog5/"/>
       <url>2021/05/04/blog5/</url>
