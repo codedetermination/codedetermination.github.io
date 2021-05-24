@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>dobot操作</title>
+      <link href="2021/05/24/blog10/"/>
+      <url>2021/05/24/blog10/</url>
+      
+        <content type="html"><![CDATA[<p>Magician Robotarm</p><p>======</p><p>本文件夹中包含了多个为Magician机械臂提供ROS支持的软件包。推荐的运行环境为 Ubuntu 16.04 + ROS Kinetic 或 Ubuntu 18.04 + ROS Melodic，其他环境下的运行情况没有测试过。</p><h4 id="Ubuntu-16-04-ROS-Kinetic"><a href="#Ubuntu-16-04-ROS-Kinetic" class="headerlink" title="Ubuntu 16.04 + ROS Kinetic"></a>Ubuntu 16.04 + ROS Kinetic</h4><p><strong>安装一些重要的依赖包</strong></p><pre class=" language-sh"><code class="language-sh">$ sudo apt-get install ros-kinetic-gazebo-ros-control ros-kinetic-ros-control ros-kinetic-ros-controllers</code></pre><p><strong>安装和升级MoveIt!</strong></p><pre class=" language-sh"><code class="language-sh">$ sudo apt-get update$ sudo apt-get install ros-kinetic-moveit</code></pre><p><strong>安装本软件包</strong></p><p>首先创建catkin工作空间 (<a href="http://wiki.ros.org/catkin/Tutorials">教程</a>)。 然后将本文件夹放到src/目录下，之后用catkin_make来编译。假设你的工作空间是~/catkin_ws，你需要运行的命令如下：</p><pre class=" language-sh"><code class="language-sh">$ cd ~/catkin_ws/src$ git clone -b kinetic-devel http://192.168.0.11:10080/ros/magician_robot.git$ cd ..$ catkin_make$ source devel/setup.bash</code></pre><h4 id="Ubuntu-18-04-ROS-Melodic"><a href="#Ubuntu-18-04-ROS-Melodic" class="headerlink" title="Ubuntu 18.04 + ROS Melodic"></a>Ubuntu 18.04 + ROS Melodic</h4><p><strong>安装一些重要的依赖包</strong></p><pre class=" language-sh"><code class="language-sh">$ sudo apt-get install ros-melodic-gazebo-ros-control ros-melodic-ros-control ros-melodic-ros-controllers</code></pre><p><strong>安装和升级MoveIt!</strong></p><pre class=" language-sh"><code class="language-sh">$ sudo apt-get update$ sudo apt-get install ros-melodic-moveit</code></pre><p><strong>安装本软件包</strong></p><p>首先创建catkin工作空间 (<a href="http://wiki.ros.org/catkin/Tutorials">教程</a>)。 然后将本文件夹放到src/目录下，之后用catkin_make来编译。假设你的工作空间是~/catkin_ws，你需要运行的命令如下：</p><pre class=" language-sh"><code class="language-sh">$ cd ~/catkin_ws/src$ git clone -b melodic-devel http://192.168.0.11:10080/ros/magician_robot.git$ cd ..$ catkin_make$ source devel/setup.bash</code></pre><hr><h3 id="使用仿真模型"><a href="#使用仿真模型" class="headerlink" title="使用仿真模型"></a>使用仿真模型</h3><p>用Gazebo仿真请运行：</p><pre class=" language-sh"><code class="language-sh">$ roslaunch magician_description gazebo.launch</code></pre><p>运行MoveIt!模块, RViz界面:</p><pre class=" language-sh"><code class="language-sh">$ roslaunch magician_moveit_config moveit_planning_execution.launch</code></pre><p>运行后台程序及Magician Control Panel界面：</p><pre class=" language-sh"><code class="language-sh">$ roslaunch magician_background magician_background.launch</code></pre><blockquote><p>关于MoveIt!的使用方法可以参考<a href="docs/moveit_plugin_tutorial.md">docs/moveit_plugin_tutorial.md</a></p></blockquote><p>Tips:</p><p>每次规划路径时，都要设置初始位置为当前位置。</p><h3 id="使用真实机械臂"><a href="#使用真实机械臂" class="headerlink" title="使用真实机械臂"></a>使用真实机械臂</h3><p>将Magician通过USB线连接到电脑。用以下命令可以查到当前电脑连接的USB设备的编号：</p><pre class=" language-sh"><code class="language-sh">$ ls /dev/ttyUSB*</code></pre><p>本软件包默认的编号是ttyUSB0 。假如当前编号不是0的话，请对magician_hardware/launch/magician_bringup.launch的相应部分进行修改。</p><pre><code></code></pre><p>现假设设备编号是ttyUSB0，运行以下指令来启动驱动：</p><pre class=" language-sh"><code class="language-sh">$ sudo chmod 777 /dev/ttyUSB0$ roslaunch magician_hardware magician_bringup.launch</code></pre><p>运行MoveIt!模块和RViz界面:</p><pre class=" language-sh"><code class="language-sh">$ roslaunch magician_moveit_config moveit_planning_execution.launch</code></pre><blockquote><p>关于MoveIt!的使用方法可以参考<a href="docs/moveit_plugin_tutorial.md">docs/moveit_plugin_tutorial.md</a></p></blockquote><p>Tips:</p><p>1.每次规划路径时，都要设置初始位置为当前位置。</p><p>2.Magician各轴运动角度范围为 J1: [-125°<del>125°]; J2: [20°</del>90°]; J3: [35°~90°]。在此范围外时MoveIt!无法进行规划。</p><p>运行后台程序及Magician Control Panel界面：</p><pre class=" language-sh"><code class="language-sh">$ roslaunch magician_background magician_background.launch</code></pre><p>————————————————<br>版权声明：本文为CSDN博主「Python咖啡」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a href="https://blog.csdn.net/weixin_30338049/article/details/114979329">https://blog.csdn.net/weixin_30338049/article/details/114979329</a></p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> ros </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>ros_controller</title>
       <link href="2021/05/23/blog9/"/>
       <url>2021/05/23/blog9/</url>
