@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="numpy的使用, 郭毅的博客">
+    <meta name="keywords" content="对于ros与move_group的深入理解, 郭毅的博客">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>numpy的使用 | 郭毅的博客</title>
+    <title>对于ros与move_group的深入理解 | 郭毅的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">numpy的使用</h1>
+                    <h1 class="description center-align post-title">对于ros与move_group的深入理解</h1>
                 </div>
             </div>
         </div>
@@ -431,8 +431,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/python%E5%8C%85%E4%BD%BF%E7%94%A8/">
-                                <span class="chip bg-color">python包使用</span>
+                            <a href="/tags/ros/">
+                                <span class="chip bg-color">ros</span>
                             </a>
                         
                     </div>
@@ -447,7 +447,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2021-04-11
+                    2021-05-24
                 </div>
                 
 
@@ -468,65 +468,65 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="numpy的使用"><a href="#numpy的使用" class="headerlink" title="numpy的使用"></a>numpy的使用</h1><h3 id="numpy的主要对象是ndarray，他是一个快速灵活的容器"><a href="#numpy的主要对象是ndarray，他是一个快速灵活的容器" class="headerlink" title="numpy的主要对象是ndarray，他是一个快速灵活的容器"></a>numpy的主要对象是ndarray，他是一个快速灵活的容器</h3><h2 id="1-从数组创建numpy对象"><a href="#1-从数组创建numpy对象" class="headerlink" title="1.从数组创建numpy对象"></a>1.从数组创建numpy对象</h2><pre class=" language-python"><code class="language-python">data <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">]</span>
-arr <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span>data<span class="token punctuation">)</span>
+                <p>之前对这些操作只是囫囵吞枣，没有好好的去真正掌握它的精髓，以为给他们进行运动学规划只需要使用moveit_assistant来生成相应的配置，这样虽然一时方便，但缺乏了后续对于这套系统的进一步认知，下来就来谈一谈关于这些方面更加细节的内容。</p>
+<h2 id="对机械臂相关内容进行展示"><a href="#对机械臂相关内容进行展示" class="headerlink" title="对机械臂相关内容进行展示"></a>对机械臂相关内容进行展示</h2><h3 id="首先我们需要额外建立一个对应的gazebo文件夹用于交互用途"><a href="#首先我们需要额外建立一个对应的gazebo文件夹用于交互用途" class="headerlink" title="首先我们需要额外建立一个对应的gazebo文件夹用于交互用途"></a>首先我们需要额外建立一个对应的gazebo文件夹用于交互用途</h3><h3 id="下面列举相关的重要的操作"><a href="#下面列举相关的重要的操作" class="headerlink" title="下面列举相关的重要的操作"></a>下面列举相关的重要的操作</h3><ol>
+<li><p>我们知道ros的launch文件是用来启动这个包里面需要文件的一个启动脚本，因此我们知道，我们首先要导入gazebo（在这里不像rviz我们直接使用node节点启动rviz，这里我们引入启动空世界的脚本进行启动，顺便启动了gazebo）</p>
+<pre><code class="xml">&lt;include file=&quot;$(find gazebo_ros)/launch/empty_world.launch&quot;&gt;&lt;/include&gt;
 </code></pre>
-<h2 id="2-快速创建数组的方式"><a href="#2-快速创建数组的方式" class="headerlink" title="2.快速创建数组的方式"></a>2.快速创建数组的方式</h2><pre class=" language-python"><code class="language-python">np<span class="token punctuation">.</span>zeros<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># 创建一个全零的数组</span>
-np<span class="token punctuation">.</span>ones<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># 创建一个全为1的数组</span>
-np<span class="token punctuation">.</span>arange<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">10</span><span class="token punctuation">,</span>n<span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># 创建一个1到10，差为2的等差数列，数量由公差确定</span>
-np<span class="token punctuation">.</span>linespace<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">10</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># 创建一个1到19，长度为4的数组</span>
+</li>
+<li><p>我们需要导入我们相关的一系列模型，这里模型启动用ros param来实现，因为这个param是公用的，其它节点也可以使用到这个变量</p>
+<pre><code class="xml">&lt;param name=&quot;robot_description&quot;command=&quot;$(find xacro)/xacro --inorder &#39;$(find robot_description)/urdf/robot.urdf.xacro&#39;&quot; /&gt;
 </code></pre>
-<h2 id="3-数组之间相互转化"><a href="#3-数组之间相互转化" class="headerlink" title="3.数组之间相互转化"></a>3.数组之间相互转化</h2><pre class=" language-python"><code class="language-python">例如之前已经创建了arr
-进行类型转换只需要arr<span class="token punctuation">.</span>astype<span class="token punctuation">(</span>对应的type<span class="token punctuation">)</span>
-数组之间进行切片转化
-操作
-arr<span class="token punctuation">[</span>行切片索引<span class="token punctuation">,</span>列切片索引<span class="token punctuation">]</span>
+<p>这里面需要注意的是，这里面的路径查找不是使用了绝对路径和一般的相对路径，而是我们要使用相应的包名来查找文件，这也是为什么我们使用前要对相应的环境变量进行初始化   </p>
+</li>
+<li><p>解析相应的urdf文件，实现导入gazebo的效果</p>
+<pre><code class="xml">&lt;node name=&quot;spawn_gazebo_model&quot; pkg=&quot;gazebo_ros&quot; type=&quot;spawn_model&quot;
+args=&quot;-urdf -param robot_description -model robot &quot; respawn=&quot;false&quot; output=&quot;screen&quot;/&gt;
 </code></pre>
-<h2 id="4-基本数组运算"><a href="#4-基本数组运算" class="headerlink" title="4.基本数组运算"></a>4.基本数组运算</h2><pre class=" language-python"><code class="language-python">arr <span class="token operator">+</span> arr2
-arr1 <span class="token operator">*</span> arr2
-arr <span class="token operator">**</span> <span class="token number">2</span>
-类似的还有除和减，以及乘方
+<p>这里面<code>robot_description</code>就是我们之前我们导入模型变量所在的变量名。<code>-urdf,-param</code>这些其实和在命令行里面输入的相关的消息差不多  </p>
+</li>
+<li><p>传输出相关的控制信息,这里面有两个非常重要的控制插件：<code>ros_control</code>这个插件负责接受外部的控制信息，进而控制gazebo中的机械臂的位置信息，这里我们需要启动ros_control这个插件，正如之前的博客所说，我们使用<code>ros_contol</code>建立起了与gazebo的通信，同时又启动了controller_manager，同时通过ros_control我们还能与传感器进行联系，具体内容如图所示：<br><img src="/.io//roscontrol.png" alt="Ros controller所产生的巨大的作用"><br>这个图片形象的展示了相关的内容，从左往右看，首先需要将一些关键信息，比如相关的controller的名字载入到controller里面，比如相关的yaml信息，由于我们还没有用到相关的传感器，所以我们暂时不会用到和sensor相关的yaml配置信息，比如其中的<code>joint_state_controller</code>我们就使用了相关的信息，将发布信息的位置，和发布频率告诉了controller_manager</p>
+<pre><code class="yaml">joint_state_controller:
+type: joint_state_controller/JointStateController
+publish_rate: 50
 </code></pre>
-<h3 id="arr对应的一些数学统计使用方法"><a href="#arr对应的一些数学统计使用方法" class="headerlink" title="arr对应的一些数学统计使用方法"></a>arr对应的一些数学统计使用方法</h3><table>
-<thead>
-<tr>
-<th align="left">对应的方法</th>
-<th align="left">对应的用途</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">sum</td>
-<td align="left">求和</td>
-</tr>
-<tr>
-<td align="left">mean</td>
-<td align="left">平均值</td>
-</tr>
-<tr>
-<td align="left">std,var</td>
-<td align="left">标准差，方差</td>
-</tr>
-<tr>
-<td align="left">min，max</td>
-<td align="left">最大值，最小值</td>
-</tr>
-<tr>
-<td align="left">argmin，argmax</td>
-<td align="left">对应的最大最小值索引</td>
-</tr>
-<tr>
-<td align="left">cumsun，cumprod</td>
-<td align="left">所有元素累积和和累积乘积</td>
-</tr>
-</tbody></table>
-<h3 id="也可以自己定义函数，传入ndarray中"><a href="#也可以自己定义函数，传入ndarray中" class="headerlink" title="也可以自己定义函数，传入ndarray中"></a>也可以自己定义函数，传入ndarray中</h3><pre class=" language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">f</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">return</span> x<span class="token operator">**</span><span class="token number">2</span>
-f<span class="token punctuation">(</span>arr<span class="token punctuation">)</span>
+<p>并且，它还会对和控制相关，即和关节有关的内容进行导入，这是通过导入<code>namespace_controllers.yaml</code>这个文件实现的，这个文件包括了一些重要的信息：</p>
+<ol>
+<li><p>相关运动的控制关节</p>
+<pre><code class="yaml">arm_group_controller:
+type: position_controllers/JointTrajectoryController
+joints:
+ - ur3_shoulder_pan_joint
+ - ur3_shoulder_lift_joint
+ - ur3_elbow_joint
+ - ur3_wrist_1_joint
+ - ur3_wrist_2_joint
+ - ur3_wrist_3_joint
 </code></pre>
+</li>
+<li><p>告诉他一些有关于当前位置的信息，就比如上图所示的左下角的三个蓝色方块，他们分别告诉了需要运动的轨迹，到达的位置和速度，这些数据一般是由rviz发出的用于规划相应运动状态所发布的</p>
+</li>
+<li><p>然后roscontroller会把这些数据统统扔到controller里面去，这里需要对一些pid内容进行设计，以方便进行符合我们需要的执行情况这里会对<code>gazebo_ros_control</code>这个文件进行导入</p>
+<pre><code class="yaml">gazebo_ros_control:
+pid_gains:
+ magician_fake_joint1:
+ p: 20.0
+ i: 0.1
+ d: 0.0
+ i_clamp: 0.2
+ antiwindup: false
+ publish_state: true
+</code></pre>
+</li>
+<li><p>这一步是通过<code>roborHW</code>来实现的，contrller在启动是也启动了<code>robotHW</code>，通过对<code>robotHW</code>的进一步的考察，我们发现了它会对比如<code>joint_limits.yaml</code>这个文件进行载入，和必要的运动物理约束进行比对，查看是否进行的是合法的运动,让模型符合约束。</p>
+</li>
+<li><p>链接相关的实际机械臂，或者我们的仿真环境gazebo，这就是它的使命</p>
+</li>
+</ol>
+</li>
+<li><p>另一个重要的插件就是我们经常用到的<code>robot_state_publisher</code>，它会对当前仿真环境、真实机器人的状态进行转化后发布，通常情况下，它都会接受<code>joint_state_publisher</code>发布的数据，然后将他们转化为相应的move_group数据，再把他们返回到move_group之中。</p>
+</li>
+</ol>
 
                 
             </div>
@@ -553,7 +553,7 @@ f<span class="token punctuation">(</span>arr<span class="token punctuation">)</s
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://codedetermination.github.io/2021/04/11/numpy0/">http://codedetermination.github.io/2021/04/11/numpy0/</a>
+                    <a href="http://codedetermination.github.io/2021/05/24/blog11/">http://codedetermination.github.io/2021/05/24/blog11/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -591,8 +591,8 @@ f<span class="token punctuation">(</span>arr<span class="token punctuation">)</s
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/python%E5%8C%85%E4%BD%BF%E7%94%A8/">
-                                    <span class="chip bg-color">python包使用</span>
+                                <a href="/tags/ros/">
+                                    <span class="chip bg-color">ros</span>
                                 </a>
                             
                         </div>
@@ -764,17 +764,18 @@ f<span class="token punctuation">(</span>arr<span class="token punctuation">)</s
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
-                <a href="/2021/04/30/blog4/">
+                <a href="/2021/05/24/blog11/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="思考与感悟">
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="对于ros与move_group的深入理解">
                         
-                        <span class="card-title">思考与感悟</span>
+                        <span class="card-title">对于ros与move_group的深入理解</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -784,9 +785,9 @@ f<span class="token punctuation">(</span>arr<span class="token punctuation">)</s
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-04-30
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-05-24
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -795,11 +796,12 @@ f<span class="token punctuation">(</span>arr<span class="token punctuation">)</s
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E4%BA%BA%E7%94%9F%E4%B8%8E%E7%90%86%E6%83%B3/">
-                        <span class="chip bg-color">人生与理想</span>
+                    <a href="/tags/ros/">
+                        <span class="chip bg-color">ros</span>
                     </a>
                     
                 </div>
@@ -813,13 +815,13 @@ f<span class="token punctuation">(</span>arr<span class="token punctuation">)</s
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/04/11/blog3/">
+                <a href="/2021/05/24/blog10/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="人生的思考与感悟(一)">
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="dobot操作">
                         
-                        <span class="card-title">人生的思考与感悟(一)</span>
+                        <span class="card-title">dobot操作</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -830,7 +832,7 @@ f<span class="token punctuation">(</span>arr<span class="token punctuation">)</s
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-04-11
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-05-24
                             </span>
                         <span class="publish-author">
                             
@@ -843,8 +845,8 @@ f<span class="token punctuation">(</span>arr<span class="token punctuation">)</s
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E4%BA%BA%E7%94%9F%E4%B8%8E%E7%90%86%E6%83%B3/">
-                        <span class="chip bg-color">人生与理想</span>
+                    <a href="/tags/ros/">
+                        <span class="chip bg-color">ros</span>
                     </a>
                     
                 </div>
