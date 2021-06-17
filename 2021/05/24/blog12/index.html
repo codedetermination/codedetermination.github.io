@@ -477,7 +477,7 @@
 这里我们来深入考察这个文件，这个文件包含了很多重要的内容，所以被称为规划的内容<br>(1) 这个插件加载了urdf文件<br>(2) 载入相关的相应的srdf文件，载入配置过的配置组<br>(3) 载入limit文件，这个是rviz里面的limit，是控制<code>joint_state_publisher</code>来使用的limit<br>(4) 载入运动学配置文件，这里包含了使用的运动学规划的程序，可以使用开源的，也可以使用闭源的,这里我们使用的是<code>kinematics_solver: kdl_kinematics_plugin/KDLKinematicsPlugin</code></li>
 <li>启动相应的<code>joint_state_publisher</code>joint的识别放在了urdf文件里面，这里要区分一下虚拟环境还是真实环境，如果是虚拟环境我们需要使用假电机的状态发布，因为我们没有链接真实的电机</li>
 <li>启动<code>robot_state_publisher</code> 挂载这个节点，接受来自于gazebo的消息，关于<code>robot_joint_publisher</code>这个我们在之前讲过</li>
-<li>载入<code>move_group</code>这个节点，它也载入<code>planning_context.launch</code>，并且他也会载入很多设置，这个涉及到很多的轨迹控制，这里不展开来讲</li>
+<li>载入<code>move_group</code>这个节点，它也载入<code>planning_context.launch</code>，并且他也会载入很多设置，这个涉及到很多的轨迹控制，这里不展开来讲，轨迹这个插件会检查执行情况  </li>
 <li>运行rviz<br>到这里就完成了全部的配置，完成了这个整个的闭环</li>
 </ol>
 
@@ -717,18 +717,17 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;Current
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2021/05/24/blog12/">
+                <a href="/2021/06/17/mathtest/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="深入理解move_group与moveit">
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="mathtest">
                         
-                        <span class="card-title">深入理解move_group与moveit</span>
+                        <span class="card-title">mathtest</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -738,9 +737,9 @@
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-05-24
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-06-17
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -748,15 +747,6 @@
                             
                         </span>
                     </div>
-                </div>
-
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/ros/">
-                        <span class="chip bg-color">ros</span>
-                    </a>
-                    
                 </div>
                 
             </div>
