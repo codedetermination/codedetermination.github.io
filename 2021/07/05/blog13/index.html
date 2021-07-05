@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="mathtest, 郭毅的博客">
+    <meta name="keywords" content="blog13, 郭毅的博客">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>mathtest | 郭毅的博客</title>
+    <title>blog13 | 郭毅的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">mathtest</h1>
+                    <h1 class="description center-align post-title">blog13</h1>
                 </div>
             </div>
         </div>
@@ -429,9 +429,13 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">No tag</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/robomaster-cmake/">
+                                <span class="chip bg-color">robomaster, cmake</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
@@ -443,7 +447,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2021-06-17
+                    2021-07-05
                 </div>
                 
 
@@ -469,8 +473,50 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>\begin{gather*}<br>\begin{matrix} 0 &amp; 1 \\ 1 &amp; 0 \end{matrix}\quad<br>\begin{pmatrix} 0 &amp; -i \\ i &amp; 0 \end{pmatrix}\\<br>\begin{bmatrix} 0 &amp; -1 \\ 1 &amp; 0 \end{bmatrix}\quad<br>\begin{Bmatrix} 1 &amp; 0 \\ 0 &amp; -1 \end{Bmatrix}\\<br>\begin{vmatrix} a &amp; b \\ c &amp; d \end{vmatrix}\quad<br>\begin{Vmatrix} i &amp; 0 \\ 0 &amp; -i \end{Vmatrix}<br>\end{gather*}</p>
+                <h1 id="CMAKE-的使用与实践"><a href="#CMAKE-的使用与实践" class="headerlink" title="CMAKE 的使用与实践"></a>CMAKE 的使用与实践</h1><p>前言：<br>    CMAKE历史之类，这里就不再介绍了，只需要知道CMAKE是一个非常好用的工具，他可以帮助人们快速的构建项目</p>
+<ol>
+<li>最简单的CMAKE 实践</li>
+</ol>
+<p>如果你想要构建最简单的项目，只需要一个程序文件，一个CMakeLists.txt就足够了 这里的CMakeLists.txt是<br>CMAKE用来编译程序的说明，通过这些文件来告诉CMAKE编译文件的一些规则</p>
+<h2 id="（1）最简单的CMAKE程序"><a href="#（1）最简单的CMAKE程序" class="headerlink" title="（1）最简单的CMAKE程序"></a>（1）最简单的CMAKE程序</h2><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">PROJECT</span>(NAME)</span><br><span class="line"><span class="comment"># 这个是用来告诉CMAKE这个程序的名字</span></span><br><span class="line"><span class="keyword">ADD_EXECUTABLE</span>(name1 xxx.c)</span><br><span class="line"><span class="comment"># 这里代表的就是把程序文件编译成为可执行文件，其中的name1代表的是可执行文件的名字</span></span><br><span class="line"><span class="keyword">MESSAGE</span>(STATUS <span class="string">&quot;This is BINARY dir &quot;</span> <span class="variable">$&#123;HELLO_BINARY_DIR&#125;</span>)</span><br><span class="line"><span class="keyword">MESSAGE</span>(STATUS <span class="string">&quot;This is SOURCE dir &quot;</span><span class="variable">$&#123;HELLO_SOURCE_DIR&#125;</span>)</span><br><span class="line"><span class="keyword">Message</span>用来在编译的过程中提示人们相应的编译结果或者过程，方便人们进行调试</span><br></pre></td></tr></table></figure>
+<p>上面是一个最简单的CMAKE程序，直接可以通过命令行打开编译好的二进制文件就可以看到输出，但是简单往往不具有使用性，所以我们需要进一步探索这个CMAKE的功能。</p>
+<h3 id="一些指代：我们会在程序中看见类似-的符号，这个符号代表的就是取到这个字符串对应的地址，而"><a href="#一些指代：我们会在程序中看见类似-的符号，这个符号代表的就是取到这个字符串对应的地址，而" class="headerlink" title="一些指代：我们会在程序中看见类似${}的符号，这个符号代表的就是取到这个字符串对应的地址，而"></a>一些指代：我们会在程序中看见类似${}的符号，这个符号代表的就是取到这个字符串对应的地址，而</h3><h3 id><a href="#" class="headerlink" title></a><PROJECTNAME_BINARY_DIR></PROJECTNAME_BINARY_DIR></h3><p>表示的是编译的二进制文件所在的位置，而</p>
+<h3 id="-1"><a href="#-1" class="headerlink" title></a><PROJECTNAME_SOURCE_DIR></PROJECTNAME_SOURCE_DIR></h3><p>代表的程序文件所在的位置，这个在内部编译中都是指代的同一个地址，而在外部编译的时候略有区分，但这些都是系统生成的</p>
+<h3 id="-2"><a href="#-2" class="headerlink" title></a><EXECUTABLE_OUTPUT_PATH></EXECUTABLE_OUTPUT_PATH></h3><p>代表的是目标二进制文件所在的位置</p>
+<h3 id="-3"><a href="#-3" class="headerlink" title></a><LIBRARY_OUTPUT_PATH></LIBRARY_OUTPUT_PATH></h3><p>代表的是最终生成的共享库所在的位置</p>
+<h2 id="（2）为一些共有或者经常修改的变量赋值"><a href="#（2）为一些共有或者经常修改的变量赋值" class="headerlink" title="（2）为一些共有或者经常修改的变量赋值"></a>（2）为一些共有或者经常修改的变量赋值</h2><p>在实际的使用过程中，我们在编译的过程中需要调节的量，以及我们在编译过程中很多都是共有的量，为了在大量的使用中快速修改，我们都会给他命一个名，set起的就是给变量赋值的作用。<br>eg: SET(SRC_LIST mian.c)<br>这里就是把main.c赋给了SRC_LIST再遇到类似情况的时候可以直接使用SRC_LIST来进行替代。</p>
+<h2 id="（3）外部构建"><a href="#（3）外部构建" class="headerlink" title="（3）外部构建"></a>（3）外部构建</h2><p>在一般的构建的过程中，我们会不得不生成大量的中间文件，这些文件会影响我们对初始文件的判断，所以我们通常使用外部构建，也即使用相应的文件夹存储中间文件和编译生成的文件，和初始文件之间进行分割，来方便我们进行重新编译和阅读代码。</p>
+<h2 id="（4）初步工程"><a href="#（4）初步工程" class="headerlink" title="（4）初步工程"></a>（4）初步工程</h2><p>如果按照外部构建的思想，我们需要把不同作用的东西进行分类，这样更加方便代码的阅读和理解<br>通常我们会这么操作</p>
+<h3 id="src：我们生成src文件夹，储存最关键的程序代码"><a href="#src：我们生成src文件夹，储存最关键的程序代码" class="headerlink" title="src：我们生成src文件夹，储存最关键的程序代码"></a>src：我们生成src文件夹，储存最关键的程序代码</h3><p>src一般再分为头文件和源文件，把头文件单独使用一个文件夹进行保存</p>
+<h3 id="build：编译工程生成编译源码的过程，并且把构建的结果放在bin里面"><a href="#build：编译工程生成编译源码的过程，并且把构建的结果放在bin里面" class="headerlink" title="build：编译工程生成编译源码的过程，并且把构建的结果放在bin里面"></a>build：编译工程生成编译源码的过程，并且把构建的结果放在bin里面</h3><p>build一般是用来进行项目的构建</p>
+<h3 id="doc：用来存放文档相关的内容"><a href="#doc：用来存放文档相关的内容" class="headerlink" title="doc：用来存放文档相关的内容"></a>doc：用来存放文档相关的内容</h3><h3 id="按照开源软件的规则还需要有：COPYRIGHT复制许可-README构建方法-run-sh快捷的执行可执行文件"><a href="#按照开源软件的规则还需要有：COPYRIGHT复制许可-README构建方法-run-sh快捷的执行可执行文件" class="headerlink" title="按照开源软件的规则还需要有：COPYRIGHT复制许可 README构建方法 run.sh快捷的执行可执行文件"></a>按照开源软件的规则还需要有：COPYRIGHT复制许可 README构建方法 run.sh快捷的执行可执行文件</h3><h3 id="新的好兄弟：ADD-SUBDIRECTORY-完成存放在bin"><a href="#新的好兄弟：ADD-SUBDIRECTORY-完成存放在bin" class="headerlink" title="新的好兄弟：ADD_SUBDIRECTORY,完成存放在bin"></a>新的好兄弟：ADD_SUBDIRECTORY,完成存放在bin</h3><p>这个兄弟的作用就是向当前工程添加存放源文件的子目录，并且可以指定中间二进制以及最终的二进制储存的位置，最后还可以指定可以在编译的过程中排除出谁</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ADD_SUBDIRECTORY</span>(source_dir [binary_dir] [EXCLUDE_FROM_ALL])</span><br></pre></td></tr></table></figure>
+<p>与一般想象的不一样这里的src不只是指的是储存文件的意思，更重要的表明这个src中的文件要参与到编译的过程中</p>
+<h3 id="进行安装-makefile"><a href="#进行安装-makefile" class="headerlink" title="进行安装 makefile"></a>进行安装 makefile</h3><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">DESTDIR=</span><br><span class="line"><span class="keyword">install</span>:</span><br><span class="line">mkdir -p $(DESTDIR)/usr/bin</span><br><span class="line"><span class="keyword">install</span> -m <span class="number">755</span> hello $(DESTDIR)/usr/bin</span><br></pre></td></tr></table></figure>
+<p>表示的就是一些可以在命令行里面直接执行，并且代表的意思是将代码安装到一个地方的文件<br>但是通过cmake我们就不需要这么麻烦，</p>
+<h3 id="INSTALL-命令"><a href="#INSTALL-命令" class="headerlink" title="INSTALL 命令"></a>INSTALL 命令</h3><p>cmake使用INSTALL命令，我们就可以直接通过sudo make install来直接将代码按照到相应的位置</p>
+<h4 id="路径"><a href="#路径" class="headerlink" title="路径"></a>路径</h4><p>这里常常涉及到安装路径相关的问题，我们可以在命令中使用</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmake -DCMAKEINSTALLPREFIX=? ..</span><br></pre></td></tr></table></figure>
+<p>来指定相关的安装路径，使得安装更加灵活</p>
+<h3 id="具体使用方法如下"><a href="#具体使用方法如下" class="headerlink" title="具体使用方法如下"></a>具体使用方法如下</h3><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSTALL</span>(TARGETS targets...</span><br><span class="line">[[ARCHIVE|LIBRARY|RUNTIME]</span><br><span class="line">[DESTINATION &lt;dir&gt;]</span><br><span class="line">[PERMISSIONS permissions...]</span><br><span class="line">[CONFIGURATIONS</span><br><span class="line">[Debug|Release|...]]</span><br><span class="line">[COMPONENT &lt;component&gt;]</span><br><span class="line">[OPTIONAL]</span><br><span class="line">] [...])</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
+<p>安装前首先要指明这些文件所属的类型，才能更好的进行安装，使用方法：</p>
+<h3 id="生成的文件targets"><a href="#生成的文件targets" class="headerlink" title="生成的文件targets"></a>生成的文件targets</h3><p>我们可以通过targets来进行ARCHIVE静态库 LIBRARY动态库 RUNTIME 可执行文件 进行安装而其中的DESTINATION可以用来指定所安装的位置，这个DESTINATION代表的就是cmake -D后面的内容</p>
+<h3 id="普通文件FILES"><a href="#普通文件FILES" class="headerlink" title="普通文件FILES"></a>普通文件FILES</h3><p>可以安装普通文件，并且我们还可以指定他的权限</p>
+<h3 id="目录DIRECTORY"><a href="#目录DIRECTORY" class="headerlink" title="目录DIRECTORY"></a>目录DIRECTORY</h3><p>可以进行整个目录的安装，也可以进行目录下所有文件的安装<br>例如</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSTALL</span>(DIRECTORY icons scripts/ DESTINATION share/myprojPATTERN <span class="string">&quot;CVS&quot;</span> EXCLUDE</span><br><span class="line">PATTERN <span class="string">&quot;scripts/*&quot;</span></span><br><span class="line">PERMISSIONS OWNER_EXECUTE OWNER_WRITE </span><br><span class="line">OWNER_READ GOUP_EXECUTE GROUP_READ</span><br></pre></td></tr></table></figure>
+<h2 id="5-共享库"><a href="#5-共享库" class="headerlink" title="(5)共享库"></a>(5)共享库</h2><p>共享库分为动态库和静态库，但是他们的作用都是为了能实现程序之间的函数共享</p>
+<h3 id="建立共享库-动态"><a href="#建立共享库-动态" class="headerlink" title="建立共享库(动态)"></a>建立共享库(动态)</h3><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ADD_LIBRARY</span>(库的名字 SHARED xxxx.c)</span><br></pre></td></tr></table></figure>
+<p>生成的是lib库的名字.so文件</p>
+<h3 id="建立静态库"><a href="#建立静态库" class="headerlink" title="建立静态库"></a>建立静态库</h3><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ADD_LIBRARY</span>(库的名字 STATIC XXXX.c)</span><br></pre></td></tr></table></figure>
+<p>生成的库的名字是lib库的名字.a文件<br>正常情况下如果静态库和动态库名字是一样的，他们就会互相覆盖</p>
+<h3 id="使他们不互相覆盖的好方法：新的函数SET-TARGET-PROPERTY"><a href="#使他们不互相覆盖的好方法：新的函数SET-TARGET-PROPERTY" class="headerlink" title="使他们不互相覆盖的好方法：新的函数SET_TARGET_PROPERTY"></a>使他们不互相覆盖的好方法：新的函数SET_TARGET_PROPERTY</h3><p>这个函数可以让我们修改掉函数的值，我们可以先使他们具有两个不一样的名字<br>然后再通过这个函数进行修改成为一样的名字，以此来避免掉他们重名后会互相覆盖这一个弊端<br>，这的确是小聪明但也的确很有效！</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">SET_TARGET_PROPERTY(库之前名字 PROPRTTIES 属性（这里为OUTPUT_NAME） <span class="string">&quot;新名字&quot;</span>)</span><br><span class="line"><span class="comment">#### 孪生兄弟GED_TARGET_PROPERTY得到函数的名字</span></span><br><span class="line">但是上面这个方法在一些时候会失效，我们再来获得一些更加高级但是有效的手段</span><br><span class="line">```cmake</span><br><span class="line"><span class="keyword">SET_TARGET_PROPERTIES</span>(hello PROPERTIES CLEAN_DIRECT_OUTPUT <span class="number">1</span>)</span><br><span class="line"><span class="keyword">SET_TARGET_PROPERTIES</span>(hello_static PROPERTIES CLEAN_DIRECT_OUTPUT</span><br><span class="line"><span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="设置新的版本号"><a href="#设置新的版本号" class="headerlink" title="设置新的版本号"></a>设置新的版本号</h3><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SET_TARGET_PROPERTIES</span>(hello PROPERTIES VERSION <span class="number">1.2</span> SOVERSION <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="使用外部的共享库和头文件"><a href="#使用外部的共享库和头文件" class="headerlink" title="使用外部的共享库和头文件"></a>使用外部的共享库和头文件</h2><h3 id="头文件"><a href="#头文件" class="headerlink" title="头文件"></a>头文件</h3><p>引入非系统默认目录或者当前目录中的头文件</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INCLUDE_DIRECTORIES</span>（库所在的目录）</span><br></pre></td></tr></table></figure>
+<h3 id="链接共享库"><a href="#链接共享库" class="headerlink" title="链接共享库"></a>链接共享库</h3><p>将当前的需要调用的主函数链接上相应的动态库</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">TARGET_LINK_LIBRARIES</span>(输出二进制文件名 动态库文件)</span><br></pre></td></tr></table></figure>
                 
             </div>
             <hr/>
@@ -496,7 +542,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://codedetermination.github.io/2021/06/17/mathtest/">http://codedetermination.github.io/2021/06/17/mathtest/</a>
+                    <a href="http://codedetermination.github.io/2021/07/05/blog13/">http://codedetermination.github.io/2021/07/05/blog13/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -533,7 +579,11 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">No tag</span>
+                            
+                                <a href="/tags/robomaster-cmake/">
+                                    <span class="chip bg-color">robomaster, cmake</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -703,9 +753,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
                 <a href="/2021/07/05/blog13/">
                     <div class="card-image">
@@ -723,9 +774,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-07-05
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-05
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -734,6 +785,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -752,13 +804,13 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/05/24/blog12/">
+                <a href="/2021/06/17/mathtest/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="深入理解move_group与moveit">
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="mathtest">
                         
-                        <span class="card-title">深入理解move_group与moveit</span>
+                        <span class="card-title">mathtest</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -769,7 +821,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-05-24
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-06-17
                             </span>
                         <span class="publish-author">
                             
@@ -778,14 +830,6 @@
                             
                         </span>
                     </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/ros/">
-                        <span class="chip bg-color">ros</span>
-                    </a>
-                    
                 </div>
                 
             </div>
@@ -914,13 +958,6 @@
 
 </main>
 
-
-<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-<script>
-    MathJax.Hub.Config({
-        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
-    });
-</script>
 
 
 
